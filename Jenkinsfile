@@ -43,6 +43,11 @@ node{
 	stage ('Docker Push') {
 		sh 'sudo docker push neranji/shopping-cart-customer-service:1.0.0'
 	}
+	
+	stage ('Deploy to EKS') {
+        sh 'helm upgrade --install customer-service-helm customer-service-helm/ --namespace=shopping-cart'
+
+	}
 }
 
 
