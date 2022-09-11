@@ -8,7 +8,7 @@ pipeline{
     stages{
 
         stage ("git clone")
-            git url:'https://github.com/nnisansala/introspect-app1.git', branch: "main"
+            git url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
 
 
         stage ("compile")
@@ -21,9 +21,8 @@ pipeline{
         stage ("Sonar")
             sh 'mvn sonar:sonar \
               -Dsonar.projectKey=${env.serviceName} \
-              -Dsonar.host.url=http://34.228.199.101:9000 \
-              -Dsonar.login=61d1d8b3eef6f7e20c28a30413bc470009ed3920'
-
+              -Dsonar.host.url=http://54.226.46.30:9000 \
+              -Dsonar.login=d22ed4e8cef63383f1229ece80d0cc8f725f4fdd'
 
         stage ("package")
             sh 'mvn package'
