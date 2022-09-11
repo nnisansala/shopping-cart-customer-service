@@ -5,11 +5,8 @@ pipeline{
         registryUsername = 'neranji'
         registryPassword = 'Kgnn@2281'
 	}
-    stages{
 
-        stage ("git clone")
-            git url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
-
+	stages {
 
         stage ("compile")
             sh 'mvn compile'
@@ -40,5 +37,7 @@ pipeline{
         stage ('docker push')
             sh 'sudo docker push ${env.registryUsername}/${env.serviceName}:${env.releaseVersion}'
 
-    }
+	}
 }
+
+
