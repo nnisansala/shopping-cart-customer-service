@@ -1,4 +1,4 @@
-pipeline{
+node{
 	environment{
 		serviceName = 'shopping-cart-customer-service'
         releaseVersion = '1.0.0'
