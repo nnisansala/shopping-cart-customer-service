@@ -19,7 +19,7 @@ node{
 
 	stage ("Sonar")
 		sh 'mvn sonar:sonar \
-		  -Dsonar.projectKey=${env.serviceName} \
+		  -Dsonar.projectKey=shopping-cart-customer-service \
 		  -Dsonar.host.url=http://54.226.46.30:9000 \
 		  -Dsonar.login=d22ed4e8cef63383f1229ece80d0cc8f725f4fdd'
 
