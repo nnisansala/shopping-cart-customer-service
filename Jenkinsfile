@@ -5,6 +5,10 @@ node{
         registryUsername = 'neranji'
         registryPassword = 'Kgnn@2281'
 	}
+	
+	stage ("git clone")
+        git credentialsId: 'nnisansala-git', url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
+
 
 	stage ("compile")
 		sh 'mvn compile'
