@@ -45,7 +45,7 @@ node{
 	}
 	
 	stage ('Deploy to EKS') {
-        sh 'helm upgrade --install customer-service-helm customer-service-helm/ --namespace=shopping-cart'
+        sh 'sudo helm upgrade --install customer-service-helm customer-service-helm/ --namespace=shopping-cart'
 
 	}
 }
