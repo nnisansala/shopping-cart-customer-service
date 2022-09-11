@@ -6,15 +6,15 @@ node{
         registryPassword = 'Kgnn@2281'
 	}
 	
-	stage ("git clone"){
+	stage ("Git Clone"){
         git credentialsId: 'nnisansala-git', url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
 	}
 
-	stage ("compile"){
+	stage ("Compile"){
 		sh 'mvn compile'
 	}
 
-	stage ("unit test"){
+	stage ("Unit Test"){
 		sh 'mvn test'
 	}
 
@@ -25,22 +25,22 @@ node{
 		  -Dsonar.login=d22ed4e8cef63383f1229ece80d0cc8f725f4fdd'
 	}
 
-	stage ("package") {
+	stage ("Package") {
 		sh 'mvn package'
 	}
 
 
-	stage ("build image"){
+	stage ("Build Image"){
 		sh 'sudo docker build -t neranji/shopping-cart-customer-service:1.0.0 .'
 	}
 
 
-	stage ('docker login') {
+	stage ('Docker Login') {
 		sh 'sudo docker login --username=neranji --password=Kgnn@2281'
 	}
 
 
-	stage ('docker push') {
+	stage ('Docker Push') {
 		sh 'sudo docker push neranji/shopping-cart-customer-service:1.0.0'
 	}
 }
