@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk13:jre-13.0.2_8
+FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR /opt/shopping-cart
 
