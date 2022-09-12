@@ -20,9 +20,9 @@ node{
 
 	stage ("Sonar"){
 		sh 'mvn sonar:sonar \
-		  -Dsonar.projectKey=shopping-cart-customer-service \
-		  -Dsonar.host.url=http://18.212.254.64:9000 \
-		  -Dsonar.login=d22ed4e8cef63383f1229ece80d0cc8f725f4fdd'
+  			-Dsonar.projectKey=shopping-cart-customer-service \
+ 			-Dsonar.host.url=http://18.212.254.64:9000 \
+  			-Dsonar.login=d40522b0a1ad7f00dc59a501f7bcdcf329fc0e24'
 	}
 
 	stage ("Package") {
