@@ -6,7 +6,7 @@ replicaCount: 2
 
 image:
   repository: neranji/shopping-cart-customer-service
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0.0"
 
@@ -65,7 +65,6 @@ resources:
      #cpu: 200m
      #memory: 500Mi
 
-
 autoscaling:
   enabled: true
   minReplicas: 2
@@ -86,12 +85,11 @@ configMap:
     - name: logging.level.com.archi
       value: DEBUG
 
-
 livenessProbe:
   path: /shoppingcart/customer/actuator/health/liveness
   enabled: true
-  initialDelaySeconds: 60
-  periodSeconds: 30
+  initialDelaySeconds: 30
+  periodSeconds: 15
   timeoutSeconds: 5
   failureThreshold: 5
   successThreshold: 1
@@ -99,7 +97,7 @@ livenessProbe:
 readinessProbe:
   path: /shoppingcart/customer/actuator/health/readiness
   enabled: true
-  initialDelaySeconds: 45
+  initialDelaySeconds: 20
   periodSeconds: 10
   timeoutSeconds: 5
   failureThreshold: 5
