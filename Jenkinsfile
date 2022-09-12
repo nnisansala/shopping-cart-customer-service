@@ -1,18 +1,18 @@
 node{
 
-	stage ("Git Clone"){
+	stage ("Git Clone") {
         git url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
 	}
 
-	stage ("Compile"){
+	stage ("Compile") {
 		sh 'mvn compile'
 	}
 
-	stage ("Unit Test"){
+	stage ("Unit Test") {
 		sh 'mvn test'
 	}
 
-	stage ("Sonar"){
+	stage ("Sonar") {
 		sh 'mvn sonar:sonar \
   			-Dsonar.projectKey=shopping-cart-customer-service \
  			-Dsonar.host.url=http://18.212.254.64:9000 \
@@ -24,7 +24,7 @@ node{
 	}
 
 
-	stage ("Build Image"){
+	stage ("Build Image") {
 		sh 'sudo docker build -t neranji/shopping-cart-customer-service:1.0.0 .'
 	}
 
@@ -37,8 +37,7 @@ node{
 	}
 	
 	stage ('Deploy to EKS') {
-        sh 'sudo helm upgrade --install customer-service-helm customer-service-helm/ --namespace=shopping-cart'
-
+         sh 'sudo helm upgrade --install customer-service-helm customer-service-helm/ --namespace=shopping-cart'
 	}
 }
 
