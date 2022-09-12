@@ -1,7 +1,7 @@
 node{
 
 	stage ("Git Clone"){
-        git credentialsId: 'nnisansala-git', url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
+        git url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
 	}
 
 	stage ("Compile"){
@@ -29,8 +29,8 @@ node{
 	}
 
 	stage ('Docker Push') {
-		withCredentials([string(credentialsId: 'neranji-docker-hub-pwd', variable: 'dockerpwd')]) {
-			sh 'echo ${dockerpwd} | sudo docker login -u neranji --password-stdin'
+		withCredentials([string(credentialsId: 'neranji-docker-hub-pwd', variable: 'dockerHubpwd')]) {
+			sh 'echo ${dockerHubpwd} | sudo docker login -u neranji --password-stdin'
             sh 'sudo docker push neranji/shopping-cart-customer-service:1.0.0'
         }
 		
