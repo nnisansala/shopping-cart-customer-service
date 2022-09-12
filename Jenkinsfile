@@ -1,11 +1,5 @@
 node{
-	environment{
-		serviceName = 'shopping-cart-customer-service'
-        releaseVersion = '1.0.0'
-        registryUsername = 'neranji'
-        registryPassword = 'Kgnn@2281'
-	}
-	
+
 	stage ("Git Clone"){
         git credentialsId: 'nnisansala-git', url:'https://github.com/nnisansala/shopping-cart-customer-service.git', branch: "develop"
 	}
@@ -34,14 +28,12 @@ node{
 		sh 'sudo docker build -t neranji/shopping-cart-customer-service:1.0.0 .'
 	}
 
-
-	stage ('Docker Login') {
-		sh 'sudo docker login --username=neranji --password=Kgnn@2281'
-	}
-
-
 	stage ('Docker Push') {
-		sh 'sudo docker push neranji/shopping-cart-customer-service:1.0.0'
+		withCredentials([string(credentialsId: 'neranji-docker-hub-pwd', variable: 'dockerHubpwd')]) {
+            sh 'echo ${dockerHubpwd} | docker login -u neranji --password-stdin'
+            sh 'sudo docker push neranji/shopping-cart-customer-service:1.0.0'
+        }
+		
 	}
 	
 	stage ('Deploy to EKS') {
